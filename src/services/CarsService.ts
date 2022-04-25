@@ -22,13 +22,15 @@ export default class CarsService extends MongoService<Car> {
     return this.model.read();
   }
 
-  public async readOne(id: string): Promise<Car | null | ServiceError> {
+  public async readOne(id: string): 
+  Promise<Car | null | undefined | ServiceError> {
+    if (id.length !== this.idLength) return undefined;
     return this.model.readOne(id);
   }
 
   public async update(id: string, data: Car):
-  Promise<Car | null | ServiceError> {
-    if (id.length !== this.idLength) return null;
+  Promise<Car | null | undefined | ServiceError> {
+    if (id.length !== this.idLength) return undefined;
     const parsed = CarSchema.safeParse(data);
     if (!parsed.success) {
       return { error: parsed.error };
@@ -36,8 +38,9 @@ export default class CarsService extends MongoService<Car> {
     return this.model.update(id, data);
   }
 
-  public async delete(id: string): Promise<Car | null | ServiceError> {
-    if (id.length !== this.idLength) return null;
+  public async delete(id: string):
+  Promise<Car | null | undefined | ServiceError> {
+    if (id.length !== this.idLength) return undefined;
     return this.model.delete(id);
   }
 }

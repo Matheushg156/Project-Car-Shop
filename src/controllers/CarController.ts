@@ -74,11 +74,11 @@ export default class CarsController extends MongoControllers<Car> {
     const { body } = req;
     try {
       const car = await this.service.update(id, body);
-      if (!car) {
-        return res.status(404).json({ error: this.errors.idLength });
+      if (car === undefined) {
+        return res.status(400).json({ error: this.errors.idLength });
       }
-      if ('error' in car) {
-        return res.status(400).json({ error: car.error });
+      if (!car) {
+        return res.status(404).json({ error: this.errors.notFound });
       }
       return res.status(200).json(car);
     } catch (error) {
@@ -93,8 +93,11 @@ export default class CarsController extends MongoControllers<Car> {
     const { id } = req.params;
     try {
       const car = await this.service.delete(id);
+      if (car === undefined) {
+        return res.status(400).json({ error: this.errors.idLength });
+      }
       if (!car) {
-        return res.status(404).json({ error: this.errors.idLength });
+        return res.status(404).json({ error: this.errors.notFound });
       }
       return res.status(204).json();
     } catch (error) {

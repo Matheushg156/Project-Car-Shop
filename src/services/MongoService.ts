@@ -12,15 +12,18 @@ export default abstract class MongoService<T> {
     return this.model.read();
   }
 
-  public async readOne(id: string): Promise<T | null | ServiceError> {
+  public async readOne(id: string):
+  Promise<T | null | undefined | ServiceError> {
     return this.model.readOne(id);
   }
 
-  public async update(id: string, data: T): Promise<T | null | ServiceError> {
+  public async update(id: string, data: T):
+  Promise<T | null | undefined | ServiceError> {
     return this.model.update(id, data);
   }
 
-  public async delete(id: string): Promise<T | null | ServiceError> {
+  public async delete(id: string):
+  Promise<T | null | undefined | ServiceError> {
     return this.model.delete(id);
   }
 }
