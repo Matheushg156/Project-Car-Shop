@@ -7,7 +7,7 @@ import {
   carResponse,
   carsListResponse,
   carPayloadUpdated,
-  carResponseUpdated } from './carsMock';
+  carResponseUpdated } from '../mocks/carsMock';
 
 describe('Car Model tests', () => {
   const carModel = new CarsModel();
