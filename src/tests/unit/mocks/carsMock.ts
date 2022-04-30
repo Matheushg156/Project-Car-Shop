@@ -61,3 +61,13 @@ export const carsListResponse = [
     doorsQty: 4,
     seatsQty: 5,
   }];
+
+export const carInvalidPayload = {
+  model: 'Ford',
+  year: 1993,
+  color: 'red',
+  status: true,
+  buyValue: 54399,
+  doorsQty: '4',
+  seatsQty: 5,
+};
