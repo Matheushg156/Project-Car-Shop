@@ -18,6 +18,8 @@ export const carPayloadUpdated = {
   seatsQty: 5,
 };
 
+export const invalidId = '5e9f8f9f9f9f9f9f9f9f9f';
+
 export const carResponse = {
   _id: '5e9f8f9f9f9f9f9f9f9f9f92',
   model: 'Ford',

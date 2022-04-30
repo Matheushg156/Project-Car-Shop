@@ -11,7 +11,8 @@ import {
   carsListResponse,
   carPayloadUpdated,
   carResponseUpdated,
-  carInvalidPayload } from '../mocks/carsMock';
+  carInvalidPayload,
+  invalidId } from '../mocks/carsMock';
 
 describe('Car Service tests', () => {
   const carService = new CarsService();
@@ -87,29 +88,45 @@ describe('Car Service tests', () => {
   });
 
   describe('Test for readOne method in carsService', () => {
-    before(async() => {
-      sinon.stub(mongoose.Model, 'findOne').resolves(carResponse);
+    describe('success scenario', () => {
+      before(async() => {
+        sinon.stub(mongoose.Model, 'findOne').resolves(carResponse);
+      });
+      after(() => {
+        sinon.restore();
+      });
+  
+      it('should return car object', async() => {
+        const car = await carService.readOne(carResponse._id);
+        expect(car).to.be.an('object');
+      });
+  
+      it('should return car object with correct properties', async() => {
+        const car = await carService.readOne(carResponse._id);
+        expect(car).to.have.all.keys([
+          '_id',
+          'model',
+          'year',
+          'color',
+          'status',
+          'buyValue',
+          'doorsQty',
+          'seatsQty']);
+      });
     });
-    after(() => {
-      sinon.restore();
-    });
+    
+    describe('fail scenario with invalid id', () => {
+      before(async() => {
+        sinon.stub(mongoose.Model, 'findOne').rejects();
+      });
+      after(() => {
+        sinon.restore();
+      });
 
-    it('should return car object', async() => {
-      const car = await carService.readOne(carResponse._id);
-      expect(car).to.be.an('object');
-    });
-
-    it('should return car object with correct properties', async() => {
-      const car = await carService.readOne(carResponse._id);
-      expect(car).to.have.all.keys([
-        '_id',
-        'model',
-        'year',
-        'color',
-        'status',
-        'buyValue',
-        'doorsQty',
-        'seatsQty']);
+      it('should return undefined', async() => {
+        const car = await carService.readOne(invalidId);
+        expect(car).to.be.equal(undefined);
+      });
     });
   });
 
@@ -155,6 +172,13 @@ describe('Car Service tests', () => {
         expect(car).to.have.all.keys(['error']);
       });
     });
+
+    describe('fail scenario with invalid id', () => {
+      it('should return undefined', async() => {
+        const car = await carService.update(invalidId, carPayloadUpdated);
+        expect(car).to.be.equal(undefined);
+      });
+    });
   });
 
   describe('Test for delete method in carsService', () => {
@@ -181,6 +205,13 @@ describe('Car Service tests', () => {
         'buyValue',
         'doorsQty',
         'seatsQty']);
+    });
+  });
+
+  describe('fail scenario with invalid id', () => {
+    it('should return undefined', async() => {
+      const car = await carService.delete(invalidId);
+      expect(car).to.be.equal(undefined);
     });
   });
 });

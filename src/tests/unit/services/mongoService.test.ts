@@ -59,7 +59,7 @@ describe('Mongo Service tests', () => {
   
     it('should return car object with correct properties', async() => {
       const car = await carService.read();
-      expect(car).to.have.all.keys([
+      expect(car[0]).to.have.all.keys([
         '_id',
         'model',
         'year',
