@@ -2,7 +2,7 @@ import CustomRouter from './Routes/Router';
 import App from './app';
 
 import CarsController from './controllers/CarController';
-import MotorcyclesController from './controllers/MongoController';
+import MotorcyclesController from './controllers/MotorcycleController';
 
 import { Car } from './interfaces/CarInterface';
 import { Motorcycle } from './interfaces/MotorcycleInterface';
