@@ -27,7 +27,7 @@ export default class CarsController extends MongoControllers<Car> {
         return res.status(500).json({ error: this.errors.badRequest });
       }
       if ('error' in car) {
-        return res.status(400).json({ error: car.error });
+        return res.status(400).json({ error: car.error.issues[0].message });
       }
       return res.status(201).json(car);
     } catch (error) {

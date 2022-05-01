@@ -73,3 +73,20 @@ export const carInvalidPayload = {
   doorsQty: '4',
   seatsQty: 5,
 };
+
+export const carErrorResponse = {
+  error: {
+    issues: [
+      {
+        code: "invalid_type",
+        expected: "number",
+        received: "string",
+        path: [
+          "doorsQty"
+        ],
+        message: "Doors quantity must be a number"
+      }
+    ],
+    name: "ZodError"
+  }
+};
