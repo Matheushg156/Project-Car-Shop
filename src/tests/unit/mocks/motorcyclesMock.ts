@@ -65,12 +65,12 @@ export const motorcyclesListResponse = [
   }];
 
 export const motorcycleInvalidPayload = {
-  model: 'Ford',
-  year: 1993,
+  model: 'Honda CG 160',
+  year: 2018,
   color: 'red',
   status: true,
-  buyValue: 54399,
-  engineCapacity: 1000,
+  buyValue: 14190,
+  engineCapacity: '162',
   category: 'Street',
 };
 
@@ -82,9 +82,9 @@ export const motorcycleErrorResponse = {
         expected: "number",
         received: "string",
         path: [
-          "doorsQty"
+          "engineCapacity"
         ],
-        message: "Doors quantity must be a number"
+        message: "Expected number, received string"
       }
     ],
     name: "ZodError"
