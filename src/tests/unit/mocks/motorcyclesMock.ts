@@ -1,3 +1,5 @@
+import { Motorcycle } from "../../../interfaces/MotorcycleInterface";
+
 export const motorcyclePayload = {
   model: 'Honda CG 160',
   year: 2018,
@@ -6,7 +8,7 @@ export const motorcyclePayload = {
   buyValue: 14190,
   engineCapacity: 162,
   category: 'Street',
-};
+} as Motorcycle;
 
 export const motorcyclePayloadUpdated = {
   model: 'Honda CG 160',
@@ -16,7 +18,7 @@ export const motorcyclePayloadUpdated = {
   buyValue: 12999,
   engineCapacity: 162,
   category: 'Street',
-};
+} as Motorcycle;
 
 export const invalidId = '5e9f8f9f9f9f9f9f9f9f9f';
 
