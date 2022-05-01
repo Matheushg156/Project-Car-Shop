@@ -1,5 +1,9 @@
 import { Motorcycle } from "../../../interfaces/MotorcycleInterface";
 
+interface responseWithId extends Motorcycle {
+  _id: string;
+};
+
 export const motorcyclePayload = {
   model: 'Honda CG 160',
   year: 2018,
@@ -31,7 +35,7 @@ export const motorcycleResponse = {
   buyValue: 14190,
   engineCapacity: 162,
   category: 'Street',
-};
+} as responseWithId;
 
 export const motorcycleResponseUpdated = {
   _id: '5e9f8f9f9f9f9f9f9f9f9f92',
@@ -42,7 +46,7 @@ export const motorcycleResponseUpdated = {
   buyValue: 12999,
   engineCapacity: 162,
   category: 'Street',
-};
+} as responseWithId;
 
 export const motorcyclesListResponse = [
   {
@@ -64,7 +68,7 @@ export const motorcyclesListResponse = [
     buyValue: 12360,
     engineCapacity: 124,
     category: 'Street',
-  }];
+  }] as responseWithId[];
 
 export const motorcycleInvalidPayload = {
   model: 'Honda CG 160',
@@ -74,7 +78,7 @@ export const motorcycleInvalidPayload = {
   buyValue: 14190,
   engineCapacity: '162',
   category: 'Street',
-};
+} as Motorcycle | any;
 
 export const motorcycleErrorResponse = {
   error: {
